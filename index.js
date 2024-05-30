@@ -2,13 +2,15 @@ const express = require('express'); // "require" the Express module
 const app = express(); // obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // assign a port
 
+app.set('views','./views');
+app.set('view engine', 'pug'); 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.render("client/pages/home/index.pug");
   });
 
   app.get('/products', (req, res) => {
-    res.send('danh sach san pham');
+    res.render("client/pages/products/index.pug");
   });
   
 // start the server on the port and output a confirmation to the console
