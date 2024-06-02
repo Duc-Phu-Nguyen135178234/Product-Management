@@ -1,0 +1,34 @@
+tao account moongodb
+cai moogoos npm i mongoose 
+after completed install mongoose , we go to index.js and embed moongos
+***********************************************************************************
+muon dung dc bien environment phai set up npm i dotenv va khai bao below 
+const dotenv = require('dotenv');
+dotenv.config();
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URL) // to secure database link
+
+***********************************************************************************
+de du lieu bao mat ta can dung toi .env file .va add 
+PORT=8080
+MONGO_URL=mongodb://127.0.0.1:27017/product-management
+
+***********************************************************************************
+NOTICE : we need to separte connection into folder like config and database.js
+***********************************************************************************
+const mongoose = require('mongoose');
+
+module.exports.connect =()=>{
+    try {
+        mongoose.connect(process.env.MONGO_URL) 
+        console.log("Success to connection")
+    } catch (error) {
+        console.log(error)
+    }
+}
+***********************************************************************************
+return index.js we declarr database and call function
+
+const database = require("./config/database") // declair connect database in config folder
+database.connect();
+***********************************************************************************
