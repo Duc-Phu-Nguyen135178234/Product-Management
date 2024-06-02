@@ -2,9 +2,10 @@
 const HomeRouter = require("./home.route");
 
 const ProductRoute = require("./product.route");
+
 module.exports = (app) =>{
   app.use('/', HomeRouter );
     
-  app.use('/products', ProductRoute);
+  app.use('/product', ProductRoute);
 }
 

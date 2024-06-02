@@ -4,6 +4,7 @@ const routes = require("./routes/client/index.route")
 
 const app = express(); // obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // assign a port
+app.use(express.static('public'));
 
 app.set('views','./views');
 app.set('view engine', 'pug'); 

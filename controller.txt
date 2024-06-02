@@ -1,0 +1,21 @@
+create folder controller => inside controller have folder client 
+insides client create 2 file home and product controller
+in home controller file we have many function
+*******************************************
+module.exports.index =(req, res) => {
+    res.render("client/pages/home/index.pug");
+  };
+**********************************************
+
+In this time route home.route will add object have 
+
+**********************************************
+const express = require("express");
+const router = express.Router();
+
+const controller = require("../../controllers/client/home.controller");
+router.get('/', controller.index);
+
+module.exports = router;
+**********************************************
+1:44:20
