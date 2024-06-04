@@ -3,10 +3,12 @@ cai moogoos npm i mongoose
 after completed install mongoose , we go to index.js and embed moongos
 ***********************************************************************************
 muon dung dc bien environment phai set up npm i dotenv va khai bao below 
+********************************************
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL) // to secure database link
+********************************************
 
 ***********************************************************************************
 de du lieu bao mat ta can dung toi .env file .va add 
@@ -15,7 +17,7 @@ MONGO_URL=mongodb://127.0.0.1:27017/product-management
 
 ***********************************************************************************
 NOTICE : we need to separte connection into folder like config and database.js
-***********************************************************************************
+****************************************************
 const mongoose = require('mongoose');
 
 module.exports.connect =()=>{
@@ -26,9 +28,31 @@ module.exports.connect =()=>{
         console.log(error)
     }
 }
+****************************************************
 ***********************************************************************************
 return index.js we declarr database and call function
 
 const database = require("./config/database") // declair connect database in config folder
 database.connect();
 ***********************************************************************************
+Tao schema cho dinh danh moogoose dc phep luu vao . Tao mot folder model trong folder co product.model.js
+
+luu y muon muon trong data keu dung ten danh sam const Product = mongoose.model("Product", productSchema, "products");
+
+***************************************
+const mongoose = require("mongoose");
+const productSchema = new Schema({
+    title: String,
+    description: String,
+    price: Number,
+    discountPercentage: Number,
+    stock: Number,
+    thumbnail: String,
+    status: String,
+    position: Number,
+    deleted: Boolean,
+});
+
+const Product = mongoose.model("Product", productSchema, "products");
+module.exports = Product;
+********************************************

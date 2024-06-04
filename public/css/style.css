@@ -45,7 +45,8 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    width:20%;
+    width:80;
+    margin:5px;
   }
   
   .product-item .inner-image {
@@ -93,3 +94,6 @@
     border-radius: 8px;
   }
   
+  .row.box{
+    display:flex;
+  }
