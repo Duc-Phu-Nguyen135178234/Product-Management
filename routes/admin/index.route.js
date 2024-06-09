@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const dashboardRouter = require('./dashboard.route');
+const productsRoute = require("./product.route");
+const systemConfig = require("../../config/system");
 
 module.exports = (app) => {
-    const PATH_ADMIN = "/admin";
-    app.use(PATH_ADMIN + "/dashboard", dashboardRouter);
+    const path = `/${systemConfig.prefixAdmin}`;
+    app.use(`${path}/dashboard`, dashboardRouter);
+
+    app.use(`${path}/products`, productsRoute);
 };
