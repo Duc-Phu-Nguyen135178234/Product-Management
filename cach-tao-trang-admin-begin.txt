@@ -1,0 +1,38 @@
+**create admin folder in routes => create index.route.js and dashboard.route.js 
+    index.route.js chua tat ca cac route cua admin => chia nho file ra dashboard.route.js
+
+    const dashboardRouter = require("./dashboard.route"); // nhung file dashboard.route.js moi tao vao
+
+    module.exports = (app) => {
+    
+        app.use('/admin/dashboard',dashboardRouter);
+    };
+
+**Sau do ket noi voi file tong index.js => 
+    const routesadmin = require("./routes/admin/index.route") // Declare route admin
+    routesadmin(app);  
+
+**File dashboard.route.js tiep tiep tuc nhung file admin.controller.js . cung tao ra folder admin in controller 
+
+    const express = require("express");
+    const router = express.Router();
+
+    const controller = require("../../controllers/admin/dashboard.controller");
+    router.get('/', controller.index);
+
+    module.exports = router;
+
+**file dashboard.controller.js giong nhu file chua ham render file index.pug trong folder views chung ta phai tao admin/pages/dashboard/index
+    module.exports.index =(req, res) => {
+        res.render("admin/pages/dashboard/index.pug");
+    };
+
+** index.pug in view in thu and test
+** Cach tao mot bien luu chuoi => ve sau minh cung de sua
+    const dashboardRouter = require("./dashboard.route");
+
+    module.exports = (app) => {
+        const PATH_ADMIN ="/admin123"
+        app.use(PATH_ADMIN + "/dashboard", dashboardRouter);
+    };
+**1:22:00 bai 15 buoi 3 bai 16

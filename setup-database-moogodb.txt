@@ -35,13 +35,16 @@ return index.js we declarr database and call function
 const database = require("./config/database") // declair connect database in config folder
 database.connect();
 ***********************************************************************************
+TACH FOLDER MODEL
 Tao schema cho dinh danh moogoose dc phep luu vao . Tao mot folder model trong folder co product.model.js
 
 luu y muon muon trong data keu dung ten danh sam const Product = mongoose.model("Product", productSchema, "products");
+qua controller . file product.controller.js sua lai doan code
 
 ***************************************
+// product.model.js
 const mongoose = require("mongoose");
-const productSchema = new Schema({
+const productSchema = new  mongoose.Schema({
     title: String,
     description: String,
     price: Number,
@@ -55,4 +58,62 @@ const productSchema = new Schema({
 
 const Product = mongoose.model("Product", productSchema, "products");
 module.exports = Product;
+*************************************************
+//product.controller.js
+
+const Product = require("../../model/product.model");
+
+
+module.exports.index = async (req, res) => {
+    
+        const products = await Product.find({});
+        console.log(products);
+        res.render("client/pages/products/index", {  // Pass the correct relative path without the .pug extension
+            pageTitle: "Danh sách sản phẩm",
+            products: products // Pass products to the view
+        });
+   
+};
+
 ********************************************
+end 
+********************************************
+Sau khi xong giao dien . minh muon loc chinh sua trong hinh find() trong product.controller.js
+  const products = await Product.find({
+          status:"active",
+          deleted: false
+        });
+chinh sua them phan giao dien cua file product index.pug
+
+   .row
+      each item in products
+        .col-4.mb-3
+          .product-item
+            .inner-image
+              img(src=item.thumbnail, alt=item.title)
+            .inner-content
+              h3.inner-title #{item.title}
+              .inner-price-new 80$
+              .inner-price-old #{item.price}$
+              .inner-discount #{item.discountPercentage}%
+
+
+LUU y moi tinh toan tinh trong product.controller.js sao do update ra index.pug giao dien . Xem thi du sau
+const Product = require("../../model/product.model");
+
+// [GET] /products/
+module.exports.index = async (req, res) => {
+    
+        const products = await Product.find({
+          status:"active",
+          deleted: false
+        });
+        for (const item of products) {
+          item.priceNew =(item.price * (100 - item.discountPercentage)/100).toFixed(0);
+        }
+        res.render("client/pages/products/index", {  // Pass the correct relative path without the .pug extension
+            pageTitle: "Danh sách sản phẩm",
+            products: products 
+        });
+   
+};

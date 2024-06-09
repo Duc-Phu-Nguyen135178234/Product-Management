@@ -1,0 +1,32 @@
+tao folder routes 
+trong folder router co file index.route.js => chua tat ca nhung route tu ben file index.js sang 
+ben file index.js chua lai 2 cho
+**************************************************************************************************
+const express = require('express'); // "require" the Express module
+
+const routes = require("./routes/client/index.route") // them cho nay de nhung file route vao
+
+const app = express(); // obtain the "app" object
+const HTTP_PORT = process.env.PORT || 8080; // assign a port
+
+app.set('views','./views');
+app.set('view engine', 'pug'); 
+
+routes(app); // phan nay da cat het code sang file route/client/index.route.js
+  
+// start the server on the port and output a confirmation to the console
+app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
+**************************************************************************************************
+Chung ta can chia nho cac file ra nua . vi du file product co toi 5 them , xoa , chinh ... vi vay chung tat can chia nho
+tao file home.route.js . embed file express and add var router . Using Router.get to print index.pug.
+Luu y luc nay ben file index.route.js . Method should be module.exports = (app) =>
+  app.use('/', HomeRouter );
+**************************************************************************************************
+const express = require("express");
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.render("client/pages/home/index.pug");
+  });
+
+  module.exports = router;

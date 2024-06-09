@@ -8,3 +8,44 @@ nhung 3 doan code vao se dung dc boostrap
 ****************************************************************************************************************
 static file muon dung d static file phai them code nay vao index.js
 app.use(express.static('public'));
+****************************************************************************************************************
+Sua lai layout
+trong thu muc views 
+tao thu layout chua default.pug with code below doan code nay ta nhung 2 file header.pug and footer.pug vao trang default
+block main if file pug muon dung default va khac phan noi dung thi chinh ngay vao block main
+****************************************************************************************************************
+doctype html
+html
+  head
+    title #{pageTitle}
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    include ../partials/header.pug
+    h1 Trang chu 
+    block main
+
+    include ../partials/footer.pug
+****************************************************************************************************************
+TRANG HOME TRONG FOLDER index.pug inheritance default
+extends ../../layouts/default.pug
+
+block main
+  h1 Trang chu 
+****************************************************************************************************************
+MIXIN la de giong nhu include nhung minh truyen du lieu khac nhau vao 
+giong card co khung giong tu hinh anh , description , price khac nhau nhung khung giong nhau . Khi do tao mot 
+box co nhung bien va tuye tham so vao luc goi ham
+****************************************************************************************************************
+file trong folder mixin
+mixin box-head(title)
+    .box-head
+        h2.inner-title #{title}
+
+trong product - index.pug thua ke mixin .nhung phai inlcude mixin len dau first xong sau do goi ham 
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+block main
+  .container.my-3
+    .row
+      .col-12
+        +box-head("Danh sach san pham")
