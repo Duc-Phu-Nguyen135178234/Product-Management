@@ -1,47 +1,81 @@
 extends ../../layouts/defaults.pug
+include ../../mixins/filter-status.pug 
+include ../../mixins/search.pug 
+include ../../mixins/pagination.pug
 
 block content
     h1(class="mb-4") Danh sách sản phẩm
-    
-    table.table.table-hover.table-sm
-        thead
-            tr
-                th STT
-                th Hình ảnh
-                th Tiêu đề
-                th Giá
-                th Trạng thái
-                th Hành động
-        tbody
-            tr
-                td 1
-                td
-                    img(
-                        src="https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-                        alt="Sản phẩm 1"
-                        width="100px"
+        .card.mb-3
+            .card-header Bộ lọc và Tìm kiếm
+            .card-body
+                .row
+                    .col-6
+                        +filter-status(filterStatus)
+                        
+                    .col-6
+                        +search(keyword)
+        .card.mb-3
+            .card-header Hành động
+            .card-body
+                div(class="input-group" box-actions)
+                    select(class="custom-select")
+                        option(value='') Chọn hành động...
+                        option(value='active') Hoạt động
+                        option(value='inactive') Dừng hoạt động
+                    .input-group-append
+                        button(
+                            class="btn btn-outline-secondary"
+                            type='button'
+                        ) Áp dụng
+            
+        .card.mb-3
+            .card-header Danh sách
+            .card-body
+            table.table.table-hover.table-sm
+                thead
+                tr
+                    th
+                        input(name="checkAll" type="checkbox")
+                    th STT
+                    th Hình ảnh
+                    th Tiêu đề
+                    th Giá
+                    th Trạng thái
+                    th Hành động
+                tbody
+                each item, index in products
+                    tr 
+                    td
+                        input(
+                            name="checkItem" 
+                            type="checkbox"
+                            value=item.id
+                        )
+                    td #{index+1}
+                    td
+                        img(
+                        src=item.thumbnail
+                        alt=item.title
+                        width="80px"
                         height="auto"
-                    )
-                td Sản phẩm 1
-                td 100$
-                td
-                    a(href="#" class="badge badge-success") Hoạt động
-                td
-                    button(class="btn btn-warning btn-sm") Sửa
-                    button(class="btn btn-danger btn-sm ml-1") Xóa
-            tr
-                td 2
-                td
-                    img(
-                        src="https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-                        alt="Sản phẩm 2"
-                        width="100px"
-                        height="auto"
-                    )
-                td Sản phẩm 2
-                td 150$
-                td
-                    a(href="#" class="badge badge-danger") Dừng hoạt động
-                td
-                    button(class="btn btn-warning btn-sm") Sửa
-                    button(class="btn btn-danger btn-sm ml-1") Xóa
+                        )
+                    td #{item.title}
+                    td #{item.price}$
+                    td
+                        if(item.status == "active")
+                            button(
+                                link=`/${prefixAdmin}/products/change-status/inactive/${item.id}`
+                                class="badge badge-success"
+                                button-change-status
+                            ) Hoạt động
+                        else
+                             button(
+                                link=`/${prefixAdmin}/products/change-status/active/${item.id}`
+                                class="badge badge-danger"
+                                button-change-status
+                            ) Dừng hoạt động
+                    td
+                        button(class="btn btn-warning btn-sm") Sửa
+                        button(class="btn btn-danger btn-sm ml-1") Xóa
+
+            +pagination(pagination)

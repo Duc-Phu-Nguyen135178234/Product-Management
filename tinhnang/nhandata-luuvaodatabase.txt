@@ -1,0 +1,4 @@
+cai them npm i body-parser to update data
+
+khi gui len can them dong nay 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
