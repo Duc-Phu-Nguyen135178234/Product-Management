@@ -69,7 +69,7 @@ module.exports.changeStatus = async (req, res) => {
   });
 
   req.flash('success', 'Cập nhật trạng thái thành công!');
-  
+
   res.json({
     code: 200
   });
@@ -112,6 +112,9 @@ module.exports.deleteItem = async (req, res) => {
   }, {
     deleted: true
   });
+
+  //hien thi thong bao 
+  req.flash('success', 'Xóa sản phẩm thành công!');
 
   res.json({
     code: 200
