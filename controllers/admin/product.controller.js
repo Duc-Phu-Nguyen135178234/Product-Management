@@ -42,7 +42,10 @@ module.exports.index = async (req, res) => {
   const products = await Product
     .find(find)
     .limit(pagination.limitItems)
-    .skip(pagination.skip);
+    .skip(pagination.skip)
+    .sort({
+      position: "desc"
+    });
   // console.log(products);
   res.render("admin/pages/products/index", {
     pageTitle: "Quản lý sản phẩm",
@@ -107,6 +110,23 @@ module.exports.deleteItem = async (req, res) => {
   }, {
     deleted: true
   });
+
+  res.json({
+    code: 200
+  });
+}
+
+// [PATCH] /admin/products/change-position/:id
+module.exports.changePosition = async (req, res) => {
+  const id = req.params.id;
+  const position = req.body.position;
+
+  await Product.updateOne({
+    _id: id
+  }, {
+    position: position
+  });
+
   res.json({
     code: 200
   });
