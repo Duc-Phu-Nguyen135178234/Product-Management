@@ -2,6 +2,7 @@ extends ../../layouts/defaults.pug
 include ../../mixins/filter-status.pug 
 include ../../mixins/search.pug 
 include ../../mixins/pagination.pug
+include ../../mixins/box-actions.pug
 
 block content
     h1(class="mb-4") Danh sách sản phẩm
@@ -17,16 +18,7 @@ block content
         .card.mb-3
             .card-header Hành động
             .card-body
-                div(class="input-group" box-actions)
-                    select(class="custom-select")
-                        option(value='') Chọn hành động...
-                        option(value='active') Hoạt động
-                        option(value='inactive') Dừng hoạt động
-                    .input-group-append
-                        button(
-                            class="btn btn-outline-secondary"
-                            type='button'
-                        ) Áp dụng
+                +box-actions(`/${prefixAdmin}/products/change-multi`)
             
         .card.mb-3
             .card-header Danh sách
@@ -76,6 +68,9 @@ block content
                             ) Dừng hoạt động
                     td
                         button(class="btn btn-warning btn-sm") Sửa
-                        button(class="btn btn-danger btn-sm ml-1") Xóa
+                        button(
+                            class="btn btn-danger btn-sm ml-1"
+                            button-delete=`/${prefixAdmin}/products/delete/${id}`
+                        ) Xóa
 
             +pagination(pagination)

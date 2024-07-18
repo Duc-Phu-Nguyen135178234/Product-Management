@@ -140,7 +140,9 @@ if(boxActions) {
         ids: ids
       };
 
-      fetch("/admin/products/change-multi", {
+      const link = boxActions.getAttribute("box-actions");
+
+      fetch(link, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -159,3 +161,24 @@ if(boxActions) {
   });
 }
 // End Box Actions
+
+// Xóa bản ghi
+const listButtonDelete = document.querySelectorAll("[button-delete]");
+if(listButtonDelete.length > 0) {
+  listButtonDelete.forEach(button => {
+    button.addEventListener("click", () => {
+      const link = button.getAttribute("button-delete");
+
+      fetch(link, {
+        method: "PATCH"
+      })
+        .then(res => res.json())
+        .then(data => {
+          if(data.code == 200) {
+            window.location.reload();
+          }
+        })
+    });
+  });
+}
+// Hết Xóa bản ghi
