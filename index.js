@@ -26,11 +26,11 @@ app.use(flash());
 // End Flash
 
 
-// parse application/x-www-form-urlencoded
+// parse application/x-www-form-urlencoded -- front end send a form
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-// parse application/json
+// parse application/json -- front end send json
 app.use(bodyParser.json());
 
 app.set('views', './views');
@@ -43,5 +43,5 @@ routes(app);
 routesadmin(app);  
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
-//bai 17 3 1:15:00
+//bai 18-2 38mins
 

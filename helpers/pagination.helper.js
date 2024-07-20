@@ -3,7 +3,7 @@ const Product = require("../model/product.model");
 module.exports = async (req, find) => {
   const pagination = {
     currentPage: 1,
-    limitItems: 4
+    limitItems: 5
   };
 
   if(req.query.page) {
