@@ -2,11 +2,11 @@ extends ../../layouts/defaults.pug
 
 block content
   h1(class="mb-4") #{pageTitle}
-
+  //- enctype="multipart/form-data" using for upload file
   form(
     action=`/${prefixAdmin}/products/create`
     method="POST"
-    enctype="multipart/form-data" // this code for upload file
+    enctype="multipart/form-data" 
   )
     div(class="form-group")
       label(for="title") Title
@@ -55,14 +55,23 @@ block content
         value="0"
         min="0"
       )
-    div(class="form-group")
-      label(for="thumbnail") Upload File
+    div(
+      class="form-group"
+      upload-image
+    )
+      label(for="thumbnail") Ảnh
       input(
         type="file"
         class="form-control-file"
         id="thumbnail"
         name="thumbnail"
         accept="image/*"
+        upload-image-input
+      )
+      img(
+        src=""
+        class="image-preview"
+        upload-image-preview
       )
     div(class="form-group")
       label(for="position") Positions

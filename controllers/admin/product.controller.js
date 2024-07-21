@@ -147,6 +147,11 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
+  //check if req have file upload and filename not empty save data thumbnail . 
+  if(req.file && req.file.filename) {
+    req.body.thumbnail = `/uploads/${req.file.filename}`;
+  }
+
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);

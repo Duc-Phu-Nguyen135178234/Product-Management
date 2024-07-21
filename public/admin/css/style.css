@@ -63,3 +63,12 @@
 /* End Body */
 
 
+/* image-preview */
+.image-preview {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  /* End image-preview */
