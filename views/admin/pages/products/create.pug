@@ -6,9 +6,10 @@ block content
   form(
     action=`/${prefixAdmin}/products/create`
     method="POST"
+    enctype="multipart/form-data" // this code for upload file
   )
     div(class="form-group")
-      label(for="title") Tiêu đề
+      label(for="title") Title
       input(
         type="text"
         class="form-control"
@@ -17,7 +18,7 @@ block content
         required
       )
     div(class="form-group")
-      label(for="desc") Mô tả
+      label(for="desc") Description
       textarea(
         class="form-control"
         id="desc"
@@ -25,7 +26,7 @@ block content
         rows="5"
       )
     div(class="form-group")
-      label(for="price") Giá
+      label(for="price") Price
       input(
         type="number"
         class="form-control"
@@ -35,7 +36,7 @@ block content
         min="0"
       )
     div(class="form-group")
-      label(for="discount") % Giảm giá
+      label(for="discount") % Discount
       input(
         type="number"
         class="form-control"
@@ -45,7 +46,7 @@ block content
         min="0"
       )
     div(class="form-group")
-      label(for="stock") Số lượng
+      label(for="stock") Quantity
       input(
         type="number"
         class="form-control"
@@ -55,15 +56,16 @@ block content
         min="0"
       )
     div(class="form-group")
-      label(for="thumbnail") Ảnh
+      label(for="thumbnail") Upload File
       input(
-        type="text"
-        class="form-control"
+        type="file"
+        class="form-control-file"
         id="thumbnail"
         name="thumbnail"
+        accept="image/*"
       )
     div(class="form-group")
-      label(for="position") Vị trí
+      label(for="position") Positions
       input(
         type="number"
         class="form-control"
@@ -81,7 +83,7 @@ block content
         value="active"
         checked
       )
-      label(for="statusActive" class="form-check-label") Hoạt động
+      label(for="statusActive" class="form-check-label") Active
     div(class="form-group form-check form-check-inline")
       input(
         type="radio"
@@ -90,9 +92,9 @@ block content
         name="status"
         value="inactive"
       )
-      label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      label(for="statusInActive" class="form-check-label") Unactive
     div(class="form-group")
       button(
         type="submit"
         class="btn btn-primary"
-      ) Tạo mới
+      ) Add Items

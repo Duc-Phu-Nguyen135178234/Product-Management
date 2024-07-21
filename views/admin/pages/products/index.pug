@@ -11,9 +11,9 @@ block content
       show-alert="3000"
     ) #{messages.success}
 
-    h1(class="mb-4") Danh sách sản phẩm
+    h1(class="mb-4") List of Products
         .card.mb-3
-            .card-header Bộ lọc và Tìm kiếm
+            .card-header Search and Filter
             .card-body
                 .row
                     .col-6
@@ -22,18 +22,18 @@ block content
                     .col-6
                         +search(keyword)
         .card.mb-3
-            .card-header Hành động
+            .card-header Active
             .card-body
                 +box-actions(`/${prefixAdmin}/products/change-multi`)
             
         .card.mb-3
-            .card-header Danh sách
+            .card-header Products
             .card-body
                 div(class="text-right mb-2")
                     a(
                     href=`/${prefixAdmin}/products/create`
                     class="btn btn-outline-success"
-                ) + Thêm mới
+                ) + Add Items
 
                 table.table.table-hover.table-sm
                     thead
@@ -41,12 +41,12 @@ block content
                         th
                             input(name="checkAll" type="checkbox")
                         th STT
-                        th Hình ảnh
-                        th Tiêu đề
-                        th Giá
-                        th Vị trí
-                        th Trạng thái
-                        th Hành động
+                        th Picture
+                        th Description
+                        th Price
+                        th Position
+                        th Status
+                        th Active
                     tbody
                     each item, index in products
                         tr 
@@ -81,18 +81,18 @@ block content
                                     link=`/${prefixAdmin}/products/change-status/inactive/${item.id}`
                                     class="badge badge-success"
                                     button-change-status
-                                ) Hoạt động
+                                ) Active
                             else
                                 button(
                                     link=`/${prefixAdmin}/products/change-status/active/${item.id}`
                                     class="badge badge-danger"
                                     button-change-status
-                                ) Dừng hoạt động
+                                ) Inactive
                         td
                             button(class="btn btn-warning btn-sm") Sửa
                             button(
                                 class="btn btn-danger btn-sm ml-1"
                                 button-delete=`/${prefixAdmin}/products/delete/${item.id}`
-                            ) Xóa
+                            ) Delete
 
             +pagination(pagination)
