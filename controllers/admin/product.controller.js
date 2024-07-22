@@ -217,10 +217,33 @@ module.exports.editPatch = async (req, res) => {
       deleted: false
     }, req.body);
 
-    req.flash("success", "Cập nhật sản phẩm thành công!");
+    req.flash("success", "Updating successful!");
   } catch (error) {
-    req.flash("error", "Id sản phẩm không hợp lệ!");
+    req.flash("error", "Invaild Id!");
   }
 
   res.redirect("back");
+}
+
+// [GET] /admin/products/detail/:id
+module.exports.detail = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const product = await Product.findOne({
+      _id: id,
+      deleted: false
+    });
+
+    if(product) {
+      res.render("admin/pages/products/detail", {
+        pageTitle: "Products Details",
+        product: product
+      });
+    } else {
+      res.redirect(`/${systemConfig.prefixAdmin}/products`);
+    }
+  } catch (error) {
+    res.redirect(`/${systemConfig.prefixAdmin}/products`);
   }
+}

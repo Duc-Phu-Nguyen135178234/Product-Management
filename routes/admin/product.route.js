@@ -36,12 +36,18 @@ router.post(
   );
 //end upload file
 
+//Router [Get] /edit/:id
 router.get("/edit/:id", controller.edit);
 
+//Router [Patch] /edit/:id
 router.patch(
   "/edit/:id", 
   upload.single('thumbnail'),
   validate.createPost,
   controller.editPatch
 );
+
+//Router [GET] /detail/:id
+router.get("/detail/:id", controller.detail);
+
 module.exports = router;
