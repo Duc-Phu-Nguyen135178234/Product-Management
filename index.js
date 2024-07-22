@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 
 const routes = require("./routes/client/index.route") // Declare route client
@@ -18,6 +19,10 @@ database.connect();
 const app = express(); // Obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // Assign a port
 app.use(express.static('public'));
+
+//method-override is help use PATCH and DELETE
+app.use(methodOverride('_method'));
+
 
 // Flash
 app.use(cookieParser('HHKALKS'));
@@ -43,5 +48,5 @@ routes(app);
 routesadmin(app);  
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
-//bai 18-2 38mins
+//bai 19 - buoi 1 
 

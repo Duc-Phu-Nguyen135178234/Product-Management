@@ -16,7 +16,7 @@ block content
                     .col-6
                         +search(keyword)
         .card.mb-3
-            .card-header Active
+            .card-header Action
             .card-body
                 +box-actions(`/${prefixAdmin}/products/change-multi`)
             
@@ -40,7 +40,7 @@ block content
                         th Price
                         th Position
                         th Status
-                        th Active
+                        th Action
                     tbody
                     each item, index in products
                         tr 
@@ -83,7 +83,10 @@ block content
                                     button-change-status
                                 ) Inactive
                         td
-                            button(class="btn btn-warning btn-sm") Modify
+                            a(
+                                class="btn btn-warning btn-sm"
+                                href=`/${prefixAdmin}/products/edit/${item.id}`
+                            ) Modify
                             button(
                                 class="btn btn-danger btn-sm ml-1"
                                 button-delete=`/${prefixAdmin}/products/delete/${item.id}`
