@@ -3,8 +3,13 @@ const multer  = require('multer');
 const router = express.Router();
 
 const controller = require("../../controllers/admin/product.controller");
+
+//using for validating form
+const validate = require("../../validates/admin/product.validate");
+
 // upload file using multer . create helpers storageMulter.helper for reuse
 const storageMulterHelper = require("../../helpers/storageMulter.helper");
+
 
 const upload = multer({ storage: storageMulterHelper.storage });
 //end add multer
@@ -25,7 +30,8 @@ router.get("/create", controller.create);
 // upload file 
 router.post(
     "/create", 
-    upload.single('thumbnail'), 
+    upload.single('thumbnail'),
+    validate.createPost,
     controller.createPost
   );
 //end upload file

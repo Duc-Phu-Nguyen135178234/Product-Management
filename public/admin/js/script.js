@@ -156,7 +156,7 @@ if(boxActions) {
           }
         })
     } else {
-      alert("Hành động và checkItem phải được chọn!");
+      alert("Please Checkbox must be selected!");
     }
   });
 }

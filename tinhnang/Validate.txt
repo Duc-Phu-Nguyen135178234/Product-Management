@@ -1,0 +1,11 @@
+- create folder Validates/admin/product.validate.js -> xem code in github
+ - front end require validate is not security . using validate back end
+ - check if (!req.body.title) empty -> using flash to show alert . after alert redirect back and return
+ -remember if add next in parameter . if validate is next()
+
+ -update routes/admin/product.route.js --> see github
+
+ - flash sucess and error we using alot -> create a mixins/ alert.pug - see code github
+ - update default.pug --> see git hub
+ - update index.pug --> see git hub
+   
