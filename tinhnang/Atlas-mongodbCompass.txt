@@ -1,0 +1,3 @@
+create account Atlas
+create user name password . connect to mongodb Compass with a string with is in env mongodb+srv://Duc_Phu_Nguyen:Looking4themoon1@cluster0.qdp1qnx.mongodb.net/product-management
+disconnecy MongodbCompass local . now connect compass online with Atlas export and import data

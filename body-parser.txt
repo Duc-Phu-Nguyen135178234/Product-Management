@@ -1,0 +1,11 @@
+
+//Body parser
+const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded -- front end send a form
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+// parse application/json -- front end send json
+app.use(bodyParser.json());
+
+
