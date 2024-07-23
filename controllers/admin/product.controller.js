@@ -124,6 +124,10 @@ module.exports.deleteItem = async (req, res) => {
 
 // [PATCH] /admin/products/change-position/:id
 module.exports.changePosition = async (req, res) => {
+  
+  
+  
+  
   const id = req.params.id;
   const position = req.body.position;
 
@@ -147,10 +151,8 @@ module.exports.create = async (req, res) => {
 
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
-  //check if req have file upload and filename not empty save data thumbnail . 
-  if(req.file && req.file.filename) {
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
-  }
+  
+  //for uploadfile already using middlewares admin to upload file 
 
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -182,7 +184,7 @@ module.exports.edit = async (req, res) => {
 
     if(product) {
       res.render("admin/pages/products/edit", {
-        pageTitle: "Chỉnh sửa sản phẩm",
+        pageTitle: "Proudtc modify",
         product: product
       });
     } else {
@@ -197,11 +199,9 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
   try {
     const id = req.params.id;
+    //uploadfile already use middle ware
 
-    if(req.file && req.file.filename) {
-      req.body.thumbnail = `/uploads/${req.file.filename}`;
-    }
-
+    
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);

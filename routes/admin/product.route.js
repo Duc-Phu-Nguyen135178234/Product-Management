@@ -2,17 +2,17 @@ const express = require("express");
 const multer  = require('multer');
 const router = express.Router();
 
-const controller = require("../../controllers/admin/product.controller");
+const controller = require("../../controllers/admin/product.controller"); //include this file
+const validate = require("../../validates/admin/product.validate"); //include file validating form
+const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware"); //include file upload file using Cloudinary
 
-//using for validating form
-const validate = require("../../validates/admin/product.validate");
-
-// upload file using multer . create helpers storageMulter.helper for reuse
-const storageMulterHelper = require("../../helpers/storageMulter.helper");
+//We upload file to cloudinary so that we DO NOT need storage helperhere
+// // upload file using multer . create helpers storageMulter.helper for reuse
+// const storageMulterHelper = require("../../helpers/storageMulter.helper");
 
 
-const upload = multer({ storage: storageMulterHelper.storage });
-//end add multer
+const upload = multer(); // using for upload file to Cloudinary
+
 
 router.get("/", controller.index);
 
@@ -31,7 +31,8 @@ router.get("/create", controller.create);
 router.post(
     "/create", 
     upload.single('thumbnail'),
-    validate.createPost,
+    uploadCloud.uploadSingle, //uploadCloud had include on top , now using
+    validate.createPost, //validate had include on top , now using
     controller.createPost
   );
 //end upload file
@@ -43,7 +44,8 @@ router.get("/edit/:id", controller.edit);
 router.patch(
   "/edit/:id", 
   upload.single('thumbnail'),
-  validate.createPost,
+  uploadCloud.uploadSingle, //uploadCloud had include on top , now using
+  validate.createPost, //validate had include on top , now using
   controller.editPatch
 );
 
