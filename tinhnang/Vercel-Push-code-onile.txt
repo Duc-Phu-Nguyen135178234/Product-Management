@@ -1,0 +1,2 @@
+create file vercel.json
+update path.join('__dirname','public') = vercel will understand using this for static file with folder public --> see github

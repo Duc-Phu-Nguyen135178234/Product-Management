@@ -11,15 +11,15 @@ module.exports.index = async (req, res) => {
   };
   const filterStatus = [
     {
-      label: "Tất cả",
+      label: "All",
       value: ""
     },
     {
-      label: "Hoạt động",
+      label: "Active",
       value: "active"
     },
     {
-      label: "Dừng hoạt động",
+      label: "Inactive",
       value: "inactive"
     },
   ];
@@ -69,7 +69,7 @@ module.exports.changeStatus = async (req, res) => {
     status: statusChange
   });
 
-  req.flash('success', 'Cập nhật trạng thái thành công!');
+  req.flash('success', 'Status success updated!');
 
   res.json({
     code: 200
@@ -115,7 +115,7 @@ module.exports.deleteItem = async (req, res) => {
   });
 
   //hien thi thong bao 
-  req.flash('success', 'Xóa sản phẩm thành công!');
+  req.flash('success', 'Success Deleted!');
 
   res.json({
     code: 200
@@ -141,7 +141,7 @@ module.exports.changePosition = async (req, res) => {
 // [GET] /admin/products/create
 module.exports.create = async (req, res) => {
   res.render("admin/pages/products/create", {
-    pageTitle: "Thêm mới sản phẩm"
+    pageTitle: "Add new products"
   });
 }
 

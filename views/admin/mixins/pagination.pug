@@ -7,12 +7,12 @@ mixin pagination(pagination)
           button(
             class="page-link"
             button-pagination=1
-          ) Trang đầu
+          ) Next
         li(class="page-item")
           button(
             class="page-link"
             button-pagination=pagination.currentPage-1
-          ) Trang trước
+          ) Back
 
       - for (var i = 1; i <= pagination.totalPage; i++)
         li(class=("page-item " + (pagination.currentPage == i ? "active" : "")))
@@ -26,9 +26,9 @@ mixin pagination(pagination)
           button(
             class="page-link"
             button-pagination=pagination.currentPage+1
-          ) Kế tiếp
+          ) Next
         li(class="page-item")
           button(
             class="page-link"
             button-pagination=pagination.totalPage
-          ) Trang cuối
+          ) End

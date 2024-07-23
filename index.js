@@ -6,19 +6,33 @@ const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const methodOverride = require('method-override');
-
+const path= require('path');
 
 const routes = require("./routes/client/index.route") // Declare route client
 const routesadmin = require("./routes/admin/index.route") // Declare route admin
 const systemConfig = require("./config/system");
 
-
+//connect to database
 dotenv.config();
 database.connect();
+//end connect to database
 
 const app = express(); // Obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // Assign a port
-app.use(express.static('public'));
+
+//using path with __dirname to deploy vercel online . they know public is static
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+//using path with __dirname to deploy vercel online and set view engine is pug
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+//end __dirname for views
+
+
+// App Locals Variables => hideen systemconfig for security. in config folder
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
 
 //method-override is help use PATCH and DELETE
 app.use(methodOverride('_method'));
@@ -31,22 +45,14 @@ app.use(flash());
 // End Flash
 
 
-// parse application/x-www-form-urlencoded -- front end send a form
+// parse application/x-www-form-urlencoded -- front end send a form && Json
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-// parse application/json -- front end send json
 app.use(bodyParser.json());
-
-app.set('views', './views');
-app.set('view engine', 'pug');
-// App Locals Variables
-app.locals.prefixAdmin = systemConfig.prefixAdmin;
-
+//end parse
 
 routes(app);
 routesadmin(app);  
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
-//bai 19 - buoi 1 
+
 
