@@ -5,5 +5,6 @@ const ProductRouter = require("./product.route");
 module.exports = (app) => {
     app.use('/', HomeRouter);
     app.use('/products', ProductRouter);  // Use the correct variable name
+    app.use("/detail/:slug", ProductRouter );
    
 };

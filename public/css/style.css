@@ -1,3 +1,4 @@
+/* General styles for the header and footer */
 .header {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -28,6 +29,7 @@
   padding: 10px;
 }
 
+/* Styles for the product listing */
 .box-head {
   margin-bottom: 30px;
 }
@@ -43,24 +45,39 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  
   margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensure all product items have equal height */
 }
 
 .product-item .inner-image {
   width: 100%;
-  aspect-ratio: 4/3;
+  height: 300px; /* Set a specific height for the image container */
   border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-item .inner-image img {
   width: 100%;
-  height: 100;
-  object-fit: cover;
+  height: 100%; /* Ensure images fill the container */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  transition: transform 5s; /* Add transition effect */
+}
+
+.product-item .inner-image:hover img {
+  transform: scale(1.1); /* Scale image on hover */
 }
 
 .product-item .inner-content {
   padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-item .inner-content .inner-title {
@@ -93,7 +110,5 @@
 
 .row.box {
   display: flex;
-  
+  flex-wrap: wrap;
 }
-
-

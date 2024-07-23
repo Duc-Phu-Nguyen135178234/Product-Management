@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const slug = require('mongoose-slug-updater');
+const slug = require('mongoose-slug-updater'); // create slug like unquie slug on router
 mongoose.plugin(slug);
 
 const productSchema = new mongoose.Schema({

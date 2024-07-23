@@ -1,12 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv'); // Declare environment
 const database = require("./config/database") // Declare connect database in config folder
-const bodyParser = require('body-parser');
-const flash = require('express-flash');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const bodyParser = require('body-parser'); // form upload
+const flash = require('express-flash'); // alert
+const cookieParser = require('cookie-parser'); // alert
+const session = require('express-session'); //alert
 const methodOverride = require('method-override');
-const path= require('path');
+const path= require('path'); // set __dirname for avriable
 
 const routes = require("./routes/client/index.route") // Declare route client
 const routesadmin = require("./routes/admin/index.route") // Declare route admin
@@ -55,4 +55,4 @@ routesadmin(app);
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 
-
+// bai19 - 2 1:13
