@@ -1,0 +1,6 @@
+install npm i tinymce
+create a file tinymce-config.js in folder public/admin/js => reuse many time when need
+update index.js => see github
+for tinymce can reuse . we should put in default.pug -> see update defualt in github
+when we need add word into textarea file . only add attribute textarea-mce *** textarea is json file . to show html in pug use ! instead # 
+

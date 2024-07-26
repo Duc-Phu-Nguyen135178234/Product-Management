@@ -29,6 +29,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //end __dirname for views
 
+//add tinymce for using word document for textarea
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // App Locals Variables => hideen systemconfig for security. in config folder
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
@@ -55,4 +57,4 @@ routesadmin(app);
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 
-// bai19 - 2 1:13
+// 

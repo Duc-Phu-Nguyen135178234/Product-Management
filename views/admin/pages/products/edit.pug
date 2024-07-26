@@ -9,7 +9,7 @@ block content
     enctype="multipart/form-data"
   )
     div(class="form-group")
-      label(for="title") Tiêu đề
+      label(for="title") Title
       input(
         type="text"
         class="form-control"
@@ -19,15 +19,16 @@ block content
         value=product.title
       )
     div(class="form-group")
-      label(for="desc") Mô tả
+      label(for="desc") Description
       textarea(
         class="form-control"
         id="desc"
         name="description"
         rows="5"
+        textarea-mce
       ) #{product.description}
     div(class="form-group")
-      label(for="price") Giá
+      label(for="price") Price
       input(
         type="number"
         class="form-control"
@@ -37,7 +38,7 @@ block content
         min="0"
       )
     div(class="form-group")
-      label(for="discount") % Giảm giá
+      label(for="discount") % Discount
       input(
         type="number"
         class="form-control"
@@ -47,7 +48,7 @@ block content
         min="0"
       )
     div(class="form-group")
-      label(for="stock") Số lượng
+      label(for="stock") Quantity
       input(
         type="number"
         class="form-control"
@@ -60,7 +61,7 @@ block content
       class="form-group"
       upload-image
     )
-      label(for="thumbnail") Ảnh
+      label(for="thumbnail") Picture
       input(
         type="file"
         class="form-control-file"
@@ -75,7 +76,7 @@ block content
         upload-image-preview
       )
     div(class="form-group")
-      label(for="position") Vị trí
+      label(for="position") Positions
       input(
         type="number"
         class="form-control"
@@ -94,7 +95,7 @@ block content
         value="active"
         checked=(product.status == "active" ? true : false)
       )
-      label(for="statusActive" class="form-check-label") Hoạt động
+      label(for="statusActive" class="form-check-label") Active
     div(class="form-group form-check form-check-inline")
       input(
         type="radio"
@@ -104,9 +105,9 @@ block content
         value="inactive"
         checked=(product.status == "inactive" ? true : false)
       )
-      label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      label(for="statusInActive" class="form-check-label") Inactive
     div(class="form-group")
       button(
         type="submit"
         class="btn btn-primary"
-      ) Cập nhật
+      ) update
