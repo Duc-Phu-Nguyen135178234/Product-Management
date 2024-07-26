@@ -19,7 +19,29 @@ block content
             .card-header Action
             .card-body
                 +box-actions(`/${prefixAdmin}/products/change-multi`)
-            
+        .card.mb-3
+            .card-header Sort
+            .card-body
+            .row
+                .col-5
+                div(sort)
+                    select(
+                    class="form-control"
+                    name="sort"
+                    sort-select
+                    )
+                        option(value="position-desc") Descending
+                        option(value="position-asc") Ascending
+                        option(value="price-desc") Price Descending
+                        option(value="price-asc") Price Ascending
+                        option(value="title-asc") Title A - Z
+                        option(value="title-desc") Title Z - A
+
+                    button(
+                    class="btn btn-danger mt-2"
+                    sort-clear
+                    ) Clear
+   
         .card.mb-3
             .card-header Products
             .card-body

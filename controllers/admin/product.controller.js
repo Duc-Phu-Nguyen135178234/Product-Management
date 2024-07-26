@@ -26,27 +26,35 @@ module.exports.index = async (req, res) => {
   if(req.query.status) {
     find.status = req.query.status;
   }
-  // Tìm kiếm
+  // Search
   let keyword = "";
   if(req.query.keyword) {
     const regex = new RegExp(req.query.keyword, "i");
     find.title = regex;
     keyword = req.query.keyword;
   }
-  // Hết Tìm kiếm
+  // End Search
 
-  // Phân trang
+  // Pagination
  
   const pagination = await paginationHelper(req, find); // goi ham pagination in helpers
-  // Hết Phân trang
+  // End Pagination
+
+  // Sort
+  const sort = {};
+
+  if(req.query.sortKey && req.query.sortValue) {
+    sort[req.query.sortKey] = req.query.sortValue;
+  } else {
+    sort.position = "desc";
+  }
+  // End Sort
 
   const products = await Product
     .find(find)
     .limit(pagination.limitItems)
     .skip(pagination.skip)
-    .sort({
-      position: "desc"
-    });
+    .sort(sort);
   // console.log(products);
   res.render("admin/pages/products/index", {
     pageTitle: "Quản lý sản phẩm",
