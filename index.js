@@ -20,6 +20,7 @@ database.connect();
 const app = express(); // Obtain the "app" object
 const HTTP_PORT = process.env.PORT || 8080; // Assign a port
 
+
 //using path with __dirname to deploy vercel online . they know public is static
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,8 +30,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //end __dirname for views
 
+
 //add tinymce for using word document for textarea
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
 
 // App Locals Variables => hideen systemconfig for security. in config folder
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
@@ -58,3 +61,4 @@ routesadmin(app);
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 
 // 
+// bai20 -3 1hrs

@@ -1,0 +1,3 @@
+in admin 
+1 create route in generanl index.route.js . when route match go to small route product-category.route.js match go to product-category.controller
+create view .

@@ -57,7 +57,7 @@ module.exports.index = async (req, res) => {
     .sort(sort);
   // console.log(products);
   res.render("admin/pages/products/index", {
-    pageTitle: "Quản lý sản phẩm",
+    pageTitle: "Product Manager",
     products: products,
     keyword: keyword,
     filterStatus: filterStatus,
