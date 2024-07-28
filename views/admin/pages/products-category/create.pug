@@ -1,4 +1,6 @@
 extends ../../layouts/defaults.pug
+include ../../mixins/select-tree.pug
+
 
 block content
   h1(class="mb-4") Add new category
@@ -26,8 +28,7 @@ block content
       )
         option(value="") -- Select categories --
         if(categories)
-          each item in categories
-            option(value=item.id) #{item.title}
+            +select-tree(categories)
     div(class="form-group")
       label(for="desc") Description
       textarea(
