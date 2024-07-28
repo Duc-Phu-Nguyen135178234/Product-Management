@@ -5,46 +5,74 @@ block content
   h1(class="mb-4") #{pageTitle}
 
   form(
-    action=`/${prefixAdmin}/products-category/edit/${category.id}?_method=PATCH`
+    action=`/${prefixAdmin}/products/edit/${product.id}?_method=PATCH`
     method="POST"
     enctype="multipart/form-data"
   )
     div(class="form-group")
-      label(for="title") Tiêu đề
+      label(for="title") Title
       input(
         type="text"
         class="form-control"
         id="title"
         name="title"
         required
-        value=category.title
+        value=product.title
       )
     div(class="form-group")
-      label(for="parent_id") Danh mục cha
+      label(for="product_category_id") Danh mục
       select(
-        name="parent_id"
+        name="product_category_id"
         class="form-control"
-        id="parent_id"
+        id="product_category_id"
       )
-        option(value="") -- Chọn danh mục cha --
+        option(value="") -- Chọn danh mục --
         if(categories)
-          each item in categories
-            option(value=item.id) #{item.title}
+          +select-tree(categories, 1, product.product_category_id)
     div(class="form-group")
-      label(for="desc") Mô tả
+      label(for="desc") Description
       textarea(
-        type="text"
         class="form-control"
         id="desc"
         name="description"
         rows="5"
         textarea-mce
-      ) #{category.description}
+      ) #{product.description}
+    div(class="form-group")
+      label(for="price") Price
+      input(
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        value=product.price
+        min="0"
+      )
+    div(class="form-group")
+      label(for="discount") % Discount
+      input(
+        type="number"
+        class="form-control"
+        id="discount"
+        name="discountPercentage"
+        value=product.discountPercentage
+        min="0"
+      )
+    div(class="form-group")
+      label(for="stock") Quantity
+      input(
+        type="number"
+        class="form-control"
+        id="stock"
+        name="stock"
+        value=product.stock
+        min="0"
+      )
     div(
       class="form-group"
       upload-image
     )
-      label(for="thumbnail") Ảnh
+      label(for="thumbnail") Picture
       input(
         type="file"
         class="form-control-file"
@@ -54,12 +82,12 @@ block content
         upload-image-input
       )
       img(
-        src=category.thumbnail
+        src=product.thumbnail
         class="image-preview"
         upload-image-preview
       )
     div(class="form-group")
-      label(for="position") Vị trí
+      label(for="position") Positions
       input(
         type="number"
         class="form-control"
@@ -67,7 +95,7 @@ block content
         name="position"
         placeholder="Tự động tăng"
         min="1"
-        value=category.position
+        value=product.position
       )
     div(class="form-group form-check form-check-inline")
       input(
@@ -76,9 +104,9 @@ block content
         id="statusActive"
         name="status"
         value="active"
-        checked=(category.status == "active" ? true : false)
+        checked=(product.status == "active" ? true : false)
       )
-      label(for="statusActive" class="form-check-label") Hoạt động
+      label(for="statusActive" class="form-check-label") Active
     div(class="form-group form-check form-check-inline")
       input(
         type="radio"
@@ -86,13 +114,11 @@ block content
         id="statusInActive"
         name="status"
         value="inactive"
-        checked=(category.status == "inactive" ? true : false)
+        checked=(product.status == "inactive" ? true : false)
       )
-      label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      label(for="statusInActive" class="form-check-label") Inactive
     div(class="form-group")
       button(
         type="submit"
         class="btn btn-primary"
-      ) Cập nhật
-
- 
+      ) update
