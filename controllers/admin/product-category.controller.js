@@ -4,9 +4,16 @@ const systemConfig = require("../../config/system");
 
 
 // [GET] /admin/products-category
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+    const records = await ProductCategory.find({
+      deleted: false
+    });
+  
+    console.log(records);
+  
     res.render("admin/pages/products-category/index", {
-      pageTitle: "Danh mục sản phẩm"
+        pageTitle: "Category List",
+        records: records
     });
   }
   // [GET] /admin/products-category/create
