@@ -25,11 +25,8 @@ router.patch(
   upload.single('thumbnail'),
   uploadCloud.uploadSingle,
   controller.editPatch
-<<<<<<< HEAD
 )
-=======
-);
 
 
->>>>>>> 0c12e5ff906cca25525b47f093f43feef0903ea1
+
 module.exports = router;
