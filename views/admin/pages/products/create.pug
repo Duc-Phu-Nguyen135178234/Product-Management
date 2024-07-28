@@ -1,4 +1,5 @@
 extends ../../layouts/defaults.pug
+include ../../mixins/select-tree.pug
 
 block content
   h1(class="mb-4") #{pageTitle}
@@ -17,6 +18,16 @@ block content
         name="title"
         required
       )
+    div(class="form-group")
+      label(for="product_category_id") Danh mục
+      select(
+        name="product_category_id"
+        class="form-control"
+        id="product_category_id"
+      )
+        option(value="") -- Select parents categories
+        if(categories)
+          +select-tree(categories)
     div(class="form-group")
       label(for="desc") Description
       textarea(
