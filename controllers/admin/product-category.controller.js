@@ -89,3 +89,45 @@ module.exports.editPatch = async (req, res) => {
 
   res.redirect(`back`);
 }
+
+//[Delete]/admin/products-category/delete/:id
+module.exports.delete = async (req,res)=>{
+  const id = req.params.id;
+
+  await ProductCategory.updateOne({
+    _id: id,
+    deleted : false
+  }, {
+    deleted: true
+  });
+
+  //req.flash('success', 'Success Deleted!');
+
+  res.json({
+    code: 200
+  });
+}
+
+module.exports.detail = async (req,res) =>{
+  try{
+    const id = req.params.id;
+
+    const category = await ProductCategory.findOne({
+      _id : id,
+      deleted:false
+    });
+
+    if (category){
+        res.render("admin/pages/products-category/detail", {
+          pageTitle: "Categories Details",
+          category: category
+        });
+      } 
+      
+    }
+  catch (error){
+    res.redirect('back');
+  }
+  
+ 
+}

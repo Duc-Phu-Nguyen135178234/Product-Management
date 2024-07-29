@@ -175,8 +175,19 @@ if(listButtonDelete.length > 0) {
         .then(res => res.json())
         .then(data => {
           if(data.code == 200) {
-            window.location.reload();
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "SUCESSFUL DELETE",
+              showConfirmButton: false,
+              timer: 1500
+            })
+              .then(() => {
+                // Reload the page after the SweetAlert2 timer completes
+                window.location.reload();
+              });
           }
+          
         })
     });
   });

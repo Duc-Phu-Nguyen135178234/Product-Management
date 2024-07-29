@@ -12,4 +12,5 @@ module.exports = (app) => {
     app.use(`${path}/products`, productsRoute);
 
     app.use(`${path}/products-category`, productsCategoryRoute);
-};
+
+    };

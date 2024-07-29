@@ -20,13 +20,15 @@ router.post(
 
 router.get("/edit/:id", controller.edit);
 
-router.patch(
-  "/edit/:id", 
+router.patch("/edit/:id", 
   upload.single('thumbnail'),
   uploadCloud.uploadSingle,
   controller.editPatch
 )
 
 
+router.patch("/delete/:id", controller.delete);
+
+router.get("/detail/:id", controller.detail);
 
 module.exports = router;
