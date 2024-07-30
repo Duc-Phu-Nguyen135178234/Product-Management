@@ -1,0 +1,15 @@
+extends ../../layouts/defaults.pug
+
+block content
+  h1(class="mb-4") Account Administration
+
+  .card.mb-3
+    .card-header Account
+    .card-body
+      .row
+        .col-8
+        .col-4.text-right
+          a(
+            href=`/${prefixAdmin}/accounts/create`
+            class="btn btn-outline-success"
+          ) + Add
