@@ -1,0 +1,69 @@
+extends ../../layouts/defaults.pug
+
+block content
+  h1(class="mb-4") Permission
+
+  if(records)
+    div(class="text-right")
+      button(
+        type="submit"
+        class="btn btn-primary mb-3"
+        button-submit=`/${prefixAdmin}/roles/permissions`
+      ) Update
+
+    table(
+      class="table table-hover table-sm"
+      table-permissions
+    )
+      thead
+        tr
+          th Function
+          each item in records
+            th(
+              class="text-center"
+              role-id=item.id
+            ) #{item.title}
+      tbody
+        tr
+          td(colspan="4")
+            b Categories
+        tr
+          td Authorize 
+          each item in records
+            td(class="text-center")
+              input(
+                type="checkbox" 
+                data-id=item.id 
+                data-name="products-category_view"
+                checked=(item.permissions.includes("products-category_view") ? true : false)
+              )
+        tr
+          td Add
+          each item in records
+            td(class="text-center")
+              input(
+                type="checkbox" 
+                data-id=item.id
+                data-name="products-category_create"
+                checked=(item.permissions.includes("products-category_create") ? true : false)
+              )
+        tr
+          td Update
+          each item in records
+            td(class="text-center")
+              input(
+                type="checkbox" 
+                data-id=item.id
+                data-name="products-category_edit"
+                checked=(item.permissions.includes("products-category_edit") ? true : false)
+              )
+        tr
+          td Delete
+          each item in records
+            td(class="text-center")
+              input(
+                type="checkbox" 
+                data-id=item.id
+                data-name="products-category_delete"
+                checked=(item.permissions.includes("products-category_delete") ? true : false)
+              )
