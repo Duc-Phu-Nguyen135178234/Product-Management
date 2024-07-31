@@ -1,14 +1,14 @@
 extends ../../layouts/defaults.pug
 
 block content
-  h1(class="mb-4") Thêm mới nhóm quyền
+  h1(class="mb-4") ADD PERMISSION
 
   form(
     action=`/${prefixAdmin}/roles/create`
     method="POST"
   )
     div(class="form-group")
-      label(for="title") Tiêu đề
+      label(for="title") TITLE
       input(
         type="text"
         class="form-control"
@@ -17,7 +17,7 @@ block content
         required
       )
     div(class="form-group")
-      label(for="desc") Mô tả
+      label(for="desc") DESCRIPTION
       input(
         type="text"
         class="form-control"
@@ -28,4 +28,4 @@ block content
       button(
         type="submit"
         class="btn btn-primary"
-      ) Tạo mới
+      ) ADD

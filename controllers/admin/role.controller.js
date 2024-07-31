@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
 // [GET] /admin/roles/create
 module.exports.create = async (req, res) => {
   res.render("admin/pages/roles/create", {
-    pageTitle: "Tạo mới nhóm quyền",
+    pageTitle: "Add new permission",
   });
 };
 
@@ -39,7 +39,7 @@ module.exports.edit = async (req, res) => {
       });
   
       res.render("admin/pages/roles/edit", {
-        pageTitle: "Chỉnh sửa nhóm quyền",
+        pageTitle: "Updating authorize",
         record: record
       });
     } catch (error) {
@@ -58,10 +58,10 @@ module.exports.edit = async (req, res) => {
         deleted: false
       }, data);
   
-      req.flash("success", "Cập nhật thành công!");
+      req.flash("success", "Updating sucessful!");
       res.redirect("back");
     } catch (error) {
-      req.flash("error", "Cập nhật thất bại!");
+      req.flash("error", "Update is unsucessful!");
       res.redirect(`/${systemConfig.prefixAdmin}/roles`);
     }
 };
@@ -73,7 +73,7 @@ module.exports.permissions = async (req, res) => {
   });
 
   res.render("admin/pages/roles/permissions", {
-    pageTitle: "Phân quyền",
+    pageTitle: "Authorize",
     records: records
   });
 };
@@ -93,6 +93,6 @@ module.exports.permissionsPatch = async (req, res) => {
 
   res.json({
     code: 200,
-    message: "Cập nhật thành công!"
+    message: "Update Successful!"
   });
 };
