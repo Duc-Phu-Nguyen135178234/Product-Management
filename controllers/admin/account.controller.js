@@ -8,7 +8,7 @@ const systemConfig = require("../../config/system");
 // [GET] /admin/accounts
 module.exports.index = (req, res) => {
     res.render("admin/pages/accounts/index", {
-      pageTitle: "Tài khoản admin"
+      pageTitle: "Account admin"
     });
 }
 
@@ -19,7 +19,7 @@ module.exports.create = async (req, res) => {
   }).select("title");
 
   res.render("admin/pages/accounts/create", {
-    pageTitle: "Tạo tài khoản admin",
+    pageTitle: "Account admin",
     roles: roles
   });
 }
