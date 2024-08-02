@@ -6,9 +6,23 @@ const generateHelper = require("../../helpers/generate.helper");
 const systemConfig = require("../../config/system");
 
 // [GET] /admin/accounts
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+  const records = await Account.find({
+    deleted: false
+  });
+
+  for (const record of records) {
+    const role = await Role.findOne({
+      _id: record.role_id,
+      deleted: false
+    });
+
+    record.roleTitle = role.title;
+  }
+
     res.render("admin/pages/accounts/index", {
-      pageTitle: "Account admin"
+      pageTitle: "Admin Account",
+      records: records
     });
 }
 
@@ -19,7 +33,7 @@ module.exports.create = async (req, res) => {
   }).select("title");
 
   res.render("admin/pages/accounts/create", {
-    pageTitle: "Account admin",
+    pageTitle: "Admin Account",
     roles: roles
   });
 }
