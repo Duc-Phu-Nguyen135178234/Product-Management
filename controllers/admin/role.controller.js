@@ -59,7 +59,7 @@ module.exports.edit = async (req, res) => {
       }, data);
   
       req.flash("success", "Updating sucessful!");
-      res.redirect("back");
+      res.redirect(`/${systemConfig.prefixAdmin}/roles`);
     } catch (error) {
       req.flash("error", "Update is unsucessful!");
       res.redirect(`/${systemConfig.prefixAdmin}/roles`);
@@ -96,3 +96,27 @@ module.exports.permissionsPatch = async (req, res) => {
     message: "Update Successful!"
   });
 };
+
+// [GET] /admin/roles/detail/:id
+module.exports.detail = async (req, res) => {
+  try {
+    const id = req.params.id;
+   
+    const roles = await Role.findOne({
+      _id: id,
+      deleted: false
+    });
+
+    if(roles) {
+      res.render("admin/pages/roles/detail", {
+        pageTitle: "Permission Details",
+        roles: roles
+      });
+    } 
+    else {
+      res.redirect(`/${systemConfig.prefixAdmin}/roles`);
+    }
+  } catch (error) {
+    res.redirect(`/${systemConfig.prefixAdmin}/roles`);
+  }
+}

@@ -1,0 +1,17 @@
+extends ../../layouts/defaults.pug
+
+block content
+  if (roles.title)
+    h1(class="mb-4") #{roles.title}
+
+  if (roles.description)
+    div(class="mb-4") Description: <b>!{roles.description}</b>
+
+  if (roles.permissions && roles.permissions.length)
+    div(class="mb-4")
+      h2 Permissions:
+      ul
+        each permission in roles.permissions
+          li !{permission}
+
+
