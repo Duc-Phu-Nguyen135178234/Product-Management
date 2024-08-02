@@ -42,6 +42,8 @@ block content
                   ) UPDATE
                   button(
                     class="btn btn-danger btn-sm ml-1"
+                    button-delete=`/${prefixAdmin}/roles/delete/${item.id}`
+                    data-id=item.id
                   ) DELETE
           else
             tr
