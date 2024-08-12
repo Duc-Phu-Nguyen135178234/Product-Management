@@ -1,4 +1,15 @@
 extends ../../layouts/defaults.pug
 
 block content
-    h1 Administration
+    h1 Trang tổng quan
+
+    h2 #{account.fullName}
+    div #{account.phone}
+    div #{account.email}
+    img(
+        src=account.avatar
+        width="150px"
+    )
+
+    h2 #{role.title}
+    div #{role.permissions}

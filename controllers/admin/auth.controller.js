@@ -5,7 +5,7 @@ const systemConfig = require("../../config/system");
 // [GET] /admin/auth/login
 module.exports.login = async (req, res) => {
   res.render("admin/pages/auth/login", {
-    pageTitle: "Sign In"
+    pageTitle: "Đăng nhập"
   });
 }
 
@@ -20,23 +20,30 @@ module.exports.loginPost = async (req, res) => {
   });
 
   if(!account) {
-    req.flash("error", "Email does not exist in the system!");
+    req.flash("error", "Email không tồn tại trong hệ thống!");
     res.redirect("back");
     return;
   }
 
   if(md5(password) != account.password) {
-    req.flash("error", "Invalid password!");
+    req.flash("error", "Sai mật khẩu!");
     res.redirect("back");
     return;
   }
 
   if(account.status != "active") {
-    req.flash("error", "Account have been locked!");
+    req.flash("error", "Tài khoản đang bị khóa!");
     res.redirect("back");
     return;
   }
 
   res.cookie("token", account.token);
   res.redirect(`/${systemConfig.prefixAdmin}/dashboard`);
+}
+
+// [GET] /admin/auth/logout
+module.exports.logout = async (req, res) => {
+  res.clearCookie("token");
+  res.redirect(`/${systemConfig.prefixAdmin}/auth/login`);
+  
 }
