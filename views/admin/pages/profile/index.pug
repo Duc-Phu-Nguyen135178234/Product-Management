@@ -1,0 +1,24 @@
+extends ../../layouts/defaults.pug
+
+block content
+  h1(class="mb-4") Personal information
+
+  if (account.avatar)
+    img(src=account.avatar width="150px" class="mb-3")
+
+  if (account.fullName)
+    p Fullname: <b>#{account.fullName}</b>
+
+  if (account.email)
+    p Email: <b>#{account.email}</b>
+
+  if (account.phone)
+    p Cellphone: <b>#{account.phone}</b>
+
+  p 
+    span Status: 
+    span
+      <b>#{account.status === "active" ? "Active": "Inactive"}</b>
+
+  if (role.title)
+    p Permission: <b>#{role.title}</b>

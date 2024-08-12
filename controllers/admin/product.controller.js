@@ -71,6 +71,17 @@ module.exports.index = async (req, res) => {
       }
   
       item.createdAtFormat = moment(item.createdAt).format("DD/MM/YY HH:mm:ss");
+      //user update
+      if(item.updatedBy) {
+        const accountUpdated = await Account.findOne({
+          _id: item.updatedBy
+        });
+        item.updatedByFullName = accountUpdated.fullName;
+      } else {
+        item.updatedByFullName = "";
+      }
+  
+      item.updatedAtFormat = moment(item.updatedAt).format("DD/MM/YY HH:mm:ss");
     }
   
     console.log(products);
@@ -131,6 +142,7 @@ module.exports.changeMulti = async (req, res) => {
     code: 200
   });
 }
+
 
 // [PATCH] /admin/products/delete/:id
 module.exports.deleteItem = async (req, res) => {
@@ -256,6 +268,8 @@ module.exports.editPatch = async (req, res) => {
       req.body.position = countProducts + 1;
     }
 
+    req.body.updatedBy = res.locals.account.id;
+    
     await Product.updateOne({
       _id: id,
       deleted: false

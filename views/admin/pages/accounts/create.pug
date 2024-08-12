@@ -1,7 +1,7 @@
 extends ../../layouts/defaults.pug
 
 block content
-  h1(class="mb-4") Thêm mới tài khoản
+  h1(class="mb-4") Add New Account
 
   form(
     action=`/${prefixAdmin}/accounts/create`
@@ -9,7 +9,7 @@ block content
 		enctype="multipart/form-data"
   )
     div(class="form-group")
-      label(for="fullName") Họ tên *
+      label(for="fullName") Fullname *
       input(
         type="text"
         class="form-control"
@@ -27,7 +27,7 @@ block content
         required
       )
     div(class="form-group")
-      label(for="password") Mật khẩu *
+      label(for="password") Password *
       input(
         type="password"
         class="form-control"
@@ -36,7 +36,7 @@ block content
         required
       )
     div(class="form-group")
-      label(for="phone") Số điện thoại
+      label(for="phone") Cellphone
       input(
         type="text"
         class="form-control"
@@ -62,7 +62,7 @@ block content
         upload-image-preview
       )
     div(class="form-group")
-      label(for="role_id") Phân quyền
+      label(for="role_id") Roles
       select(name="role_id" id="role_id" class="form-control")
         option(disabled) -- Chọn --
         each item in roles
@@ -76,7 +76,7 @@ block content
         value="active"
         checked
       )
-      label(for="statusActive" class="form-check-label") Hoạt động
+      label(for="statusActive" class="form-check-label") Active
     div(class="form-group form-check form-check-inline")
       input(
         type="radio"
@@ -85,9 +85,9 @@ block content
         name="status"
         value="inactive"
       )
-      label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      label(for="statusInActive" class="form-check-label") Inactive
     div(class="form-group")
       button(
         type="submit"
         class="btn btn-primary"
-      ) Tạo mới
+      ) Add
