@@ -20,13 +20,13 @@ block content
         value=product.title
       )
     div(class="form-group")
-      label(for="product_category_id") Danh mục
+      label(for="product_category_id") Categories
       select(
         name="product_category_id"
         class="form-control"
         id="product_category_id"
       )
-        option(value="") -- Chọn danh mục --
+        option(value="") -- Select Categories --
         if(categories)
           +select-tree(categories, 1, product.product_category_id)
     div(class="form-group")
