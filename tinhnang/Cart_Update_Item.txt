@@ -1,5 +1,5 @@
-
-//update item in cart
+// Cập nhật số lượng sản phẩm trong giỏ hàng , Remmeber to add path in default.pug layout
+**********************************************
 const listInputQuantity = document.querySelectorAll("[cart] input[name='quantity']");
 if(listInputQuantity.length > 0) {
   listInputQuantity.forEach(input => {
@@ -13,4 +13,4 @@ if(listInputQuantity.length > 0) {
     })
   })
 }
-  //update item in cart
+// Hết Cập nhật số lượng sản phẩm trong giỏ hàng
