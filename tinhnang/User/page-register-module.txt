@@ -1,0 +1,12 @@
+module.exports.registerPost = async (req, res) => {
+  const userData = {
+    fullName: req.body.fullName, 
+    email: req.body.email,
+    password: md5(req.body.password), 
+    tokenUser: generateHelper.generateRandomString(30) // Generate a random 30-character string as the user's token
+  };
+
+  console.log(userData); 
+
+  res.send("OK"); 
+};
