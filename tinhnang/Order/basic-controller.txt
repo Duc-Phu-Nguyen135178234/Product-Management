@@ -1,0 +1,18 @@
+const Cart = require("../../models/cart.model");
+const Product = require("../../models/product.model");
+
+// [GET] /checkout/
+module.exports.index = async (req, res) => {
+  const cartId = req.cookies.cartId;
+
+  const cart = await Cart.findOne({
+    _id: cartId
+  });
+
+  
+
+  res.render("client/pages/checkout/index", {
+    pageTitle: "Đặt hàng",
+    
+  });
+};
