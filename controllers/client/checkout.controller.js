@@ -98,3 +98,45 @@ module.exports.orderPost = async (req,res) =>{
     
     res.redirect(`/checkout/success/${order.id}`);
 }
+
+
+
+// [GET] /checkout/success/:orderId
+module.exports.success = async (req, res) => {
+    const orderId = req.params.orderId; // Retrieve the order ID from the request parameters
+    
+
+    // Find the order document in the database by its ID
+    const order = await Order.findOne({
+      _id: orderId
+    }); 
+  
+    let totalPrice = 0; 
+
+
+    // Loop through each product in the order
+    for (const item of order.products) { 
+
+        // Find the product information in the database by its ID
+      const productInfo = await Product.findOne({
+        _id: item.productId
+      }); 
+      
+      //add more key into item
+      item.thumbnail = productInfo.thumbnail; 
+
+      item.title = productInfo.title; 
+
+      item.priceNew = (1 - item.discountPercentage / 100) * item.price;
+
+      item.totalPrice = item.priceNew * item.quantity;
+       
+      totalPrice += item.totalPrice; // Add the item's total price to the overall total price
+    }
+  
+    res.render("client/pages/checkout/success", {
+      pageTitle: "Order Successful", // Set the page title to "Order Successful"
+      order: order, // Pass the order details to the view
+      totalPrice: totalPrice // Pass the calculated total price to the view
+    });
+};
