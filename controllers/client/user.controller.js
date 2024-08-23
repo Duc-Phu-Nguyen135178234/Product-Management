@@ -174,3 +174,19 @@ module.exports.resetPassword = async (req, res) => {
     pageTitle: "Change New Password"
   });
 };
+
+
+// [PATCH] /user/password/reset
+module.exports.resetPasswordPatch = async (req, res) => {
+  const password = req.body.password;
+  const tokenUser = req.cookies.tokenUser;
+
+  await User.updateOne({
+    tokenUser: tokenUser,
+    deleted: false
+  }, {
+    password: md5(password)
+  });
+
+  res.redirect("/");
+};
