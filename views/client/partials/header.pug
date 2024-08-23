@@ -37,8 +37,12 @@ header.header
                 +sub-menu(layoutCategoryProducts)
             li
               a(href="/cart") Cart (#{cartTotal})
-            li
-              a(href="/user/login") Login
-            li
-              a(href="/user/register") Register
+            if(user)
+              li
+                a(href="/user/logout") Logout
+            else
+              li
+                a(href="/user/login") Login
+              li
+                a(href="/user/register") Register
 

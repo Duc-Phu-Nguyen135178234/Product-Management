@@ -49,6 +49,10 @@ app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 // End Flash
 
+app.use((req, res, next) => {
+    res.locals.messages = req.flash();
+    next();
+  });
 
 // parse application/x-www-form-urlencoded -- front end send a form && Json
 app.use(bodyParser.urlencoded({ extended: false }));
