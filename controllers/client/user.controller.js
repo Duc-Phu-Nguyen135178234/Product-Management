@@ -41,4 +41,47 @@ module.exports.registerPost = async (req, res) => {
   res.redirect("/");
 };
 
+// [GET] /user/login
+module.exports.login = async (req, res) => {
+  // Render the login page for the user with the specified page title
+  res.render("client/pages/user/login", {
+    pageTitle: "Login to your account",
+  });
+};
 
+// [POST] /user/login
+module.exports.loginPost = async (req, res) => {
+  // Find a user in the database based on the provided email
+  const user = await User.findOne({
+    email: req.body.email,
+    deleted: false
+  });
+
+  
+  if(!user) {
+    req.flash("error", "Email does not exist!");
+    res.redirect("back");
+    return;
+  }
+
+  // If the password does not match
+  if(md5(req.body.password) != user.password) {
+    req.flash("error", "Incorrect password!");
+    res.redirect("back");
+    return;
+  }
+
+  // If the user's account status is not active, 
+  if(user.status != "active") {
+    req.flash("error", "Account is locked!");
+    res.redirect("back");
+    return;
+  }
+
+  // Set a cookie with the user's token to maintain the session
+  res.cookie("tokenUser", user.tokenUser);
+
+  // Flash a success message and redirect to the homepage
+  req.flash("success", "Login successful!");
+  res.redirect("/");
+};
