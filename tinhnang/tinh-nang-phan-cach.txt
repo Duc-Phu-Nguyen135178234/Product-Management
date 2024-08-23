@@ -1,1 +1,0 @@
-tao mot field parent id chua id cua phan tu cha khi minh phan cap goi recursion or callback

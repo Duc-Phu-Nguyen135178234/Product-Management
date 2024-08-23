@@ -1,7 +1,0 @@
-const products = await Product
-  .find(find)
-  .limit(4)
-  .skip(0);
-
-  create helper to module to export function , create mixins de su dung lai 
-  

@@ -1,5 +1,0 @@
-
--- update product.route.js -> router.get("/detail/:id", controller.detail);
--- after having router -- create view with detail.pug
--- update product.controller.js to update data with // [GET] /admin/products/detail/:id
--- add button detail into file index.pug

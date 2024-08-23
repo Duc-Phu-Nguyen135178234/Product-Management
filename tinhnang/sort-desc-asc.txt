@@ -1,3 +1,0 @@
-First at front end of admin index.pug create select drop down with option dec & asc . And button clear
-After go to public admin js --> write function to click on front end
-then updating login backend in controller

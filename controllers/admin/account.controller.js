@@ -3,6 +3,7 @@ const Account = require("../../model/account.model");
 const md5 = require('md5');
 const generateHelper = require("../../helpers/generate.helper");
 const systemConfig = require("../../config/system");
+
 // [GET] /admin/accounts
 module.exports.index = async (req, res) => {
   const records = await Account.find({

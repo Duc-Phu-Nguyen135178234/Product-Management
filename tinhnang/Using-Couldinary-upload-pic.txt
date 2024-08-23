@@ -1,2 +1,0 @@
-create middleware folder for admin name uploadCloud.middleware.js => configuation function uploud with name and api key 
-when product.route.js need update and using . See the github code 

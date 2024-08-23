@@ -1,6 +1,0 @@
-- install method-override to help use Method Patch
---update index.js for using method-override
--- update product.route.js -> add router get get id and router Patch for updating
--- after having router -- create view with edit.pug
--- update product.controller.js to update data with // [GET] /admin/products/edit/:id && // [PATCH] /admin/products/edit/:id
--- add button modify into file index.pug
