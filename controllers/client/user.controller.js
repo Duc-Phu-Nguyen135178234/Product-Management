@@ -7,6 +7,9 @@ const ForgotPassword = require("../../model/forgot-password.model");
 
 const generateHelper = require("../../helpers/generate.helper"); 
 
+//add helper using send OTP nodemailer
+const sendEmailHelper = require("../../helpers/sendEmail.helper");
+
 // [GET] /user/register
 module.exports.register = async (req, res) => {
   res.render("client/pages/user/register", {
@@ -129,6 +132,11 @@ module.exports.forgotPasswordPost = async (req, res) => {
   await forgotPassword.save();
 
   // Việc 2: Gửi mã OTP qua email của user (Tạm thời coi như xong, làm sau)
+
+  const subject = "OTP reset password.";
+  const htmlSendMail = `Your OTP is <b style="color: green;">${otp}</b>. OTP is valided in 3 mins.`;
+  sendEmailHelper.sendEmail(email, subject, htmlSendMail);
+
 
   res.redirect(`/user/password/otp?email=${email}`);
 };
