@@ -61,6 +61,13 @@ app.use(bodyParser.json());
 
 routes(app);
 routesadmin(app);  
+
+app.get("*", (req, res) => {
+  res.render("client/pages/errors/404", {
+    pageTitle: "404 Not Found"
+  });
+});
+
 // Start the server on the port and output a confirmation to the console
 app.listen(HTTP_PORT, () => console.log(`server listening on: ${HTTP_PORT}`));
 
