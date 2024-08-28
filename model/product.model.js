@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
       },
+      featured: {
+        type: Boolean,
+        default: false // Set default to false
+    },
       slug: {
         type: String,
         slug: "title",

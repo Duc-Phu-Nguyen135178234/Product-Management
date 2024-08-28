@@ -9,7 +9,7 @@ module.exports.index = async (req, res) => {
       deleted: false
     })
     .sort({ position: "desc" })
-    .limit(6)
+    .limit(3)
     .select("-description");
 
   for (const item of productsFeatured) {

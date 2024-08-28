@@ -199,7 +199,7 @@ module.exports.create = async (req, res) => {
 module.exports.createPost = async (req, res) => {
   
   //for uploadfile already using middlewares admin to upload file 
-
+ 
   req.body.price = parseInt(req.body.price);
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
@@ -210,7 +210,8 @@ module.exports.createPost = async (req, res) => {
     req.body.position = countProducts + 1;
   }
 
-  
+  req.body.featured = req.body.hotProduct === 'true';
+
   req.body.createdBy = res.locals.account.id;
 
   const newProduct = new Product(req.body);
