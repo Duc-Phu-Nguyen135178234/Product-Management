@@ -1,7 +1,11 @@
 extends ../../layouts/defaults.pug
+include ../../mixins/alert.pug
 
 block content
   h1 General Settings
+
+  +alert-success(6000)
+  +alert-error(6000)
 
   form(
     action=`/${prefixAdmin}/settings/general?_method=PATCH`

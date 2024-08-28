@@ -14,14 +14,16 @@ module.exports.general = async (req, res) => {
 module.exports.generalPatch = async (req, res) => {
   const setting = await Setting.findOne({});
 
-  if(setting) {
+  if (setting) {
     await Setting.updateOne({
       _id: setting.id
     }, req.body);
+    req.flash('success', 'Settings updated successfully!');
   } else {
     const record = new Setting(req.body);
     await record.save();
+    req.flash('success', 'Settings created successfully!');
   }
 
-  res.redirect("back");
+  res.redirect('back');
 };
